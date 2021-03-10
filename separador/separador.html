@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Separador de textos</title>
+    <style>
+
+    body {
+        background: rgb(24, 136, 80) ;
+        font: normal 15pt arial;
+    }
+    
+    header { 
+        color: white;
+        text-align: center;
+    }
+
+    input#lixo {
+        width: 20px;
+        height: 20px;
+        margin-bottom: -4px;
+    }
+
+    input#pref {
+        width: 150px;
+    }
+
+    input#sufix {
+        width: 150px
+    }
+
+    input#lixo2 {
+        width: 20px;
+        height: 20px;
+        margin-bottom: -5px;
+    }
+    
+    section {
+        background: white;
+        border-radius: 20px;
+        padding: 50px;
+        width: 500px;
+        margin: auto;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.603); 
+    }
+    
+    footer {
+        color: white;
+        text-align: center;
+        font-style: italic;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Separador de textos</h1>
+    </header>
+    <section>
+        <div>
+            Buscas de Textos:
+            <input type="text" name="texto" id="texto">
+            <input type="image" src="lixeira.png" id="lixo" onclick="apagar()">
+            <br> Prefixo: <input type="text" name="prefixo" id="pref">
+            Sufixo: <input type="text" name="sufixo" id="sufix">
+            <input type="image" src="lixeira.png" id="lixo2" onclick="apagar1()">
+            <br><input type="button" value="Analisar" onclick="analisar()">
+            <input type="button" value="Limpar tudo" onclick="apagar2()">
+            <p></p>
+        </div>
+        <div id="res">
+
+        </div>
+
+    </section>
+    <footer>
+        <p>&copy; IsaqueFranca</p>
+    </footer>
+    <script>
+
+var nome = document.getElementById('texto')
+var prefixo = document.getElementById('pref')
+var sufixo = document.getElementById('sufix')
+var res = document.getElementById('res')
+
+function apagar() {
+    nome.value = ''
+    nome.focus()
+}
+
+function apagar1() {
+    prefixo.value = ''
+    sufixo.value = ''
+    pref.focus()
+}
+
+function apagar2 () {
+    nome.value = ''
+    prefixo.value = ''
+    sufixo.value = ''
+    res.innerHTML = ''
+    nome.focus()
+}
+
+/*
+function inLista(n, l) {
+    if(l.indexOf(String(n)) != -1) {
+        return true
+    } else {
+        return false
+    }
+} */
+
+function analisar() {
+        var nomes = nome.value.split(" ")
+        if (nome.length != 0) {
+        //nomes.push(nome.value)
+        let pref = String(prefixo.value)
+        let suf = String(sufixo.value)
+        res.innerHTML = 'Lista:<br>'
+        for(let pos = 0; pos < nomes.length; pos++) {
+            nomes.sort()
+            res.innerHTML += `${pref}${nomes[pos]}${suf}<br>`
+        }
+    } else {
+        window.alert ('Insira uma palavra antes de finalizar')
+    }
+    nome.focus()
+    nome.value = ''
+}
+</script>
+    
+</body>
+</html>
